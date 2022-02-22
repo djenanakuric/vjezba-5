@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  min-height: 80vh;
+  min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,7 +28,7 @@ body {
 
 .App {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -71,15 +71,15 @@ body {
 }
 
 .searchForm {
-  width: 80%;
+  width: 40%;
   padding: 1rem 0 0 0.75rem;
 }
 
 .searchForm input[type="text"] {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
-  min-height: 48px;
-  font-size: 1rem;
+  min-height: 30px;
+  font-size: 0.75rem;
   padding: 0.25rem;
   border-radius: 0.25rem;
   outline: none;
@@ -93,7 +93,7 @@ body {
 .Nav ul {
   color: #fff;
   list-style-type: none;
-  display: flex;
+  display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
 }
