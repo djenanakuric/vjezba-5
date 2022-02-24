@@ -18,6 +18,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
+  const [editTitle, setEditTitle] = useState('');
+  const [editBody, setEditBody] = useState('');
   const history = useHistory();
 
   useEffect( () => {
@@ -61,10 +63,33 @@ function App() {
     history.push('/');
   }
 
-  const handleDelete = (id) => {
-    const postList = posts.filter(post => post.id !== id);
-    setPosts(postList);
-    history.push('/');
+const handleEdit = async (id) => {
+  const datetime = format(new Date(), 'MMMM dd, yyyy pp'); 
+    const updatedPost = {id, title: editTitle, datetime, body: editBody};
+  try {
+    const response = await api.put(`/posts/${id}`, updatedPost)
+    setPost(posts.map( post => post.id === id ? { ...response.data} : post))
+    setEditBody("");
+    setEditTitle("");
+    history.push("/");
+  } 
+  catch (err) {
+    console.log(`Error: ${err.message}`);
+  }
+}
+
+
+
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/posts/${id}`);
+      const postList = posts.filter(post => post.id !== id);
+      setPosts(postList);
+      history.push('/');
+    } catch (err){
+      console.log(`Error: ${err.message}`);
+    }
+    
   }
 
   return (
